@@ -71,6 +71,16 @@ body::after {
   z-index: 1;
 }
 
+.justify {
+  max-width: 780px;
+  text-align: justify;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+  color: var(--text-muted);
+}
+
 /* ── Hero ── */
 .hero {
   background: linear-gradient(145deg, #fff0f7 0%, #ffe4f0 50%, #ffd6ea 100%);
