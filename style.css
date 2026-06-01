@@ -180,7 +180,7 @@ body::after {
   margin-top: 1.5rem;
 }
 
-.contact p {
+.contact a {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -197,27 +197,10 @@ body::after {
   letter-spacing: 0.01em;
 }
 
-.contact a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.5rem 1.25rem;
-  background: var(--pink);
-  color: var(--pink-pale);
-  text-decoration: none;
-  border-radius: var(--radius-pill);
-  font-size: 0.85rem;
-  font-weight: 500;
-  border: 1.5px solid var(--border-strong);
-  box-shadow: var(--shadow-sm);
-  transition: all 0.22s ease;
-  letter-spacing: 0.01em;
-}
-
 .contact a:hover {
-  background: var(--pink-dark);
+  background: var(--pink);
   color: var(--white);
-  border-color: var(--pink-dark);
+  border-color: var(--pink);
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
@@ -417,6 +400,108 @@ h3::before {
   color: var(--text-muted);
   line-height: 1.75;
   margin: 0;
+}
+
+
+/* ── Figma Projects ── */
+.subsection-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pink-dark);
+  margin: 2rem 0 1rem;
+}
+
+.figma-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.1rem;
+}
+
+.figma-card {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--pink-pale);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.22s ease, transform 0.22s ease;
+}
+
+.figma-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.figma-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--pink-light);
+}
+
+.figma-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.figma-card:hover .figma-thumb img {
+  transform: scale(1.05);
+}
+
+.figma-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 100, 170, 0.75);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transition: opacity 0.22s ease;
+}
+
+.figma-card:hover .figma-overlay {
+  opacity: 1;
+}
+
+/* placeholder when no image loaded */
+.figma-thumb img[src="images/figma-placeholder.png"],
+.figma-thumb img:not([src]) {
+  opacity: 0;
+}
+
+.figma-thumb::before {
+  content: '✦';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--pink);
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.figma-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+  padding: 0.7rem 0.9rem;
+  border-top: 1px solid var(--border);
 }
 
 /* ── Certifications ── */
