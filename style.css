@@ -197,6 +197,23 @@ body::after {
   letter-spacing: 0.01em;
 }
 
+.contact p {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--white);
+  color: var(--pink-dark);
+  text-decoration: none;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1.5px solid var(--border-strong);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.22s ease;
+  letter-spacing: 0.01em;
+}
+
 .contact a:hover {
   background: var(--pink);
   color: var(--white);
