@@ -501,7 +501,7 @@ h3::before {
 }
 
 .figma-thumb::before {
-  content: '✦';
+  /* content: '✦'; */
   position: absolute;
   inset: 0;
   display: flex;
@@ -522,13 +522,175 @@ h3::before {
 }
 
 /* ── Certifications ── */
-.certs {
+/* ── Certifications ── */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.1rem;
+}
+ 
+.cert-card {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.22s ease, transform 0.22s ease;
+}
+ 
+.cert-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+ 
+.cert-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--pink-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+/* ✦ placeholder shown when image missing */
+.cert-thumb::before {
+  content: '✦';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--pink);
+  opacity: 0.4;
+}
+ 
+.cert-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+ 
+.cert-card:hover .cert-thumb img {
+  transform: scale(1.04);
+}
+ 
+.cert-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 100, 170, 0.78);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transition: opacity 0.22s ease;
+  z-index: 2;
+}
+ 
+.cert-card:hover .cert-overlay {
+  opacity: 1;
+}
+ 
+.cert-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+  padding: 0.7rem 0.9rem;
+  border-top: 1px solid var(--border);
+  line-height: 1.4;
+}
+ 
+/* ── Lightbox ── */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(44, 26, 34, 0.85);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+ 
+.lightbox.active {
+  display: flex;
+}
+ 
+.lightbox-inner {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  max-width: 720px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  animation: fadeUp 0.25s ease;
+}
+ 
+.lightbox-inner img {
+  width: 100%;
+  display: block;
+  max-height: 70vh;
+  object-fit: contain;
+  background: var(--pink-pale);
+}
+ 
+.lightbox-inner p {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+  padding: 0.9rem 1.25rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+ 
+.lightbox-close {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.5rem;
+  background: var(--white);
+  border: none;
+  border-radius: 50%;
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1rem;
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+  z-index: 1001;
+}
+ 
+.lightbox-close:hover {
+  background: var(--pink);
+  color: var(--white);
+}
+ 
+ 
+/* ── (old certs replaced) ── */
+.certs-unused {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 0.75rem;
 }
-
+ 
 .certs li {
   display: flex;
   align-items: center;
@@ -542,20 +704,20 @@ h3::before {
   color: var(--text);
   transition: all 0.2s ease;
 }
-
+ 
 .certs li::before {
   content: '✦';
   color: var(--pink);
   font-size: 0.7rem;
   flex-shrink: 0;
 }
-
+ 
 .certs li:hover {
   background: var(--pink-light);
   border-color: var(--pink);
   transform: translateX(4px);
 }
-
+ 
 /* ── Footer ── */
 footer {
   background: var(--text);
@@ -566,7 +728,7 @@ footer {
   letter-spacing: 0.04em;
   position: relative;
 }
-
+ 
 footer::before {
   content: '✦  ✦  ✦';
   display: block;
@@ -576,23 +738,23 @@ footer::before {
   letter-spacing: 0.4em;
   font-size: 0.65rem;
 }
-
+ 
 /* ── Animations ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
+ 
 .hero-text > *, .hero img {
   animation: fadeUp 0.6s ease both;
 }
-
+ 
 .hero h1       { animation-delay: 0.05s; }
 .hero h2       { animation-delay: 0.15s; }
 .hero-text > p { animation-delay: 0.22s; }
 .contact       { animation-delay: 0.32s; }
 .hero img      { animation-delay: 0.1s; }
-
+ 
 /* ── Responsive ── */
 @media (max-width: 600px) {
   .container { padding: 0 1.25rem; }
